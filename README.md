@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smashing Views — marketing website
 
-## Getting Started
+Next.js (App Router) · React · TypeScript · Tailwind CSS v4 · GSAP + ScrollTrigger · Motion · Lenis · Lucide.
+Polish (default, unprefixed URLs) and English (`/en/...`) with a PL/EN switch.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build && npm start   # production check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy `.env.example` → `.env.local` and fill what you need. The site works with **no** env vars; the contact form then reports honestly that delivery is not configured.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| What | Where |
+|---|---|
+| Retail prices (PLN matrix, durations, viewer options) | `src/data/pricing.ts` — the only place prices exist |
+| Additional services / `enabled` flags / "Wycena indywidualna" | `src/data/services.ts` |
+| Contact details, social links (env-driven, hidden when empty) | `src/config/site.ts` + `.env.example` |
+| All copy (PL + EN, same typed shape) | `src/content/pl/index.ts`, `src/content/en/index.ts` — add a locale by adding a dictionary and extending `src/content/index.ts` |
+| Locale routing | `src/proxy.ts` (Polish rewritten to `/pl`, `/en` untouched), `src/app/[locale]/*`, helpers in `src/lib/locale-utils.ts`, switch in `src/components/layout/LangSwitch.tsx` |
+| Design tokens (colours, type, grid, grain, glow) | `src/app/globals.css` |
+| Motion system | `src/components/motion/*`, `src/lib/gsap.ts`, `src/lib/lenis.ts` |
+| Hero choreography | `src/components/home/Hero.tsx`, `NetworkCanvas.tsx`, `LiveDashboard.tsx` |
+| Contact form (client + server validation share one zod schema) | `src/lib/contact-schema.ts`, `src/app/api/contact/route.ts` |
+| LivePanel supplier layer (server-only) | `src/lib/livepanel/*` |
 
-## Learn More
+## Contact form delivery
 
-To learn more about Next.js, take a look at the following resources:
+Set one of: `RESEND_API_KEY` + `CONTACT_TO_EMAIL` + `CONTACT_FROM_EMAIL`, or `FORMSPREE_ENDPOINT`. Optional Cloudflare Turnstile (`NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`). Built-in: honeypot, minimum fill time, per-IP rate limit (in-memory — swap for Redis/Upstash on multi-instance hosting), server-side re-derivation of the quoted price.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## LivePanel integration (future automation)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Server-only (`import "server-only"`). The API key is read from `LIVEPANEL_API_KEY` at call time and never logged or returned. Supplier `rate` is never copied into public data. `livePanel.add()` is not wired to any route and throws unless `LIVEPANEL_ORDERS_ENABLED=true`; real ordering needs a separate authenticated, payment-confirmed workflow. `GET /api/admin/livepanel` (Bearer `ADMIN_API_TOKEN`) validates the package→service-ID mapping against the live catalog and returns no pricing. Details: `src/lib/livepanel/README.md`.
 
-## Deploy on Vercel
+## Before going live
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Fill the real contact details (env), review `/legal/*` — they are drafts marked as such.
+- Confirm every enabled entry in `src/data/services.ts` against what you can really deliver.
+- Validate supplier service IDs (`src/lib/livepanel/mapping.ts`) against the live catalog.
+- Set `NEXT_PUBLIC_SITE_URL` to the production origin (canonical URLs, sitemap, Open Graph).
