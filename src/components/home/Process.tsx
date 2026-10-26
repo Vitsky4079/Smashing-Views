@@ -68,7 +68,7 @@ export function Process() {
                   <div className="absolute left-0 top-0 flex size-[4.25rem] items-center justify-center border border-green/60 bg-bg md:static md:mb-10">
                     <Icon className="size-7 text-green" strokeWidth={1.4} aria-hidden />
                   </div>
-                  <p className="display text-[clamp(3.5rem,6vw,6rem)] text-transparent" style={{ WebkitTextStroke: "1px rgba(245,247,244,.35)" }}>
+                  <p className="display text-[clamp(3.5rem,6vw,6rem)] text-green">
                     {s.n}
                   </p>
                   <h3 className="display mt-4 text-[clamp(1.5rem,2.2vw,2.1rem)]">{s.title}</h3>

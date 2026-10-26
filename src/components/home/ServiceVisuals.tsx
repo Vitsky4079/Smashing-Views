@@ -15,7 +15,7 @@ export function FacebookLiveVisual() {
       <rect x="32" y="26" width="38" height="14" fill="#e5322d" />
       <circle cx="41" cy="33" r="2.4" fill="#fff" className="sv-anim live-dot" />
       <text x="48" y="36.6" fontSize="8" fontWeight="700" fill="#fff" fontFamily="var(--font-space-grotesk)" letterSpacing="1">LIVE</text>
-      <text x="176" y="37" fontSize="8" fill={L} fontFamily="var(--font-jetbrains)" className="sv-anim sv-blink">+ viewers</text>
+      <text x="206" y="37" textAnchor="end" fontSize="8" fill={L} fontFamily="var(--font-jetbrains)" className="sv-anim sv-blink">+ viewers</text>
       {Array.from({ length: 18 }).map((_, i) => (
         <rect key={i} x={36 + i * 10} y="64" width="5" height="64" fill={i % 4 === 0 ? L : G} opacity={0.85} className="sv-anim sv-bar" style={{ animationDelay: `${(i * 97) % 1100}ms`, animationDuration: `${1.2 + (i % 5) * 0.2}s` }} />
       ))}

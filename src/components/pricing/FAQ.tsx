@@ -18,7 +18,7 @@ export function FAQ() {
       <div className="wrap grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <p className="label label-green mb-5">{f.eyebrow}</p>
-          <MaskText id="faq-title" lines={f.title} className="h-lg" lineClassName={(i) => (i === 1 ? "text-green" : undefined)} />
+          <MaskText id="faq-title" lines={f.title} className="text-[clamp(1.8rem,5.6vw,2.6rem)] lg:text-[clamp(2rem,3.3vw,4rem)]" lineClassName={(i) => (i === 1 ? "text-green" : undefined)} />
         </div>
         <div className="lg:col-span-8">
           <ul className="divide-y divide-line border-y border-line">

@@ -74,6 +74,8 @@ export function Hero() {
       .call(() => setViewers(DEMO_VIEWERS), undefined, 2.2)
       // floating metric cards
       .to(q("[data-card]"), { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, 2.3)
+      // the drawn outline fills in: the full logo, then it recedes into the background
+      .to(q("[data-bigmark] [data-fill]"), { opacity: 1, duration: 0.5, ease: "power1.out" }, 1.45)
       // 6 audience nodes populate the field
       .to(state, { reveal: 1, duration: 2.6, ease: "power1.inOut" }, 1.7)
       // 7 headline lines (mask) then 8 CTAs
@@ -172,7 +174,7 @@ export function Hero() {
               as="h1"
               manual
               lines={h.lines}
-              className="text-[clamp(1.95rem,8.2vw,2.7rem)] md:text-[clamp(2.6rem,4.7vw,5.6rem)]"
+              className="text-[clamp(1.95rem,8.2vw,2.7rem)] md:text-[clamp(2.6rem,4.2vw,5.2rem)]"
               lineClassName={(i) => (i === 2 ? "text-green" : "text-ink")}
             />
           </div>

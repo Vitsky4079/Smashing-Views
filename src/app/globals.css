@@ -223,7 +223,8 @@ html.lenis body {
 /* Mask reveal lines */
 .mask-line {
   display: block;
-  overflow: hidden;
+  /* clip only vertically (mask reveal); never cut glyphs sideways */
+  clip-path: inset(0 -100vw 0 -100vw);
   padding-bottom: 0.08em;
   margin-bottom: -0.08em;
   white-space: nowrap;
