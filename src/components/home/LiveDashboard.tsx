@@ -7,17 +7,6 @@ import { cn } from "@/lib/cn";
 
 const POINTS = 44;
 
-/** Deterministic PRNG so SSR and client agree on the initial render. */
-function mulberry(seed: number) {
-  return () => {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 /** Activity level (0..1) grows with the illustrative viewer count. */
 const baseFor = (viewers: number) => Math.min(0.9, 0.34 + 0.56 * Math.log10(Math.max(viewers, 100) / 100));
 
@@ -25,14 +14,16 @@ const seriesFor = (base: number) =>
   Array.from({ length: POINTS }, (_, i) => Math.min(0.95, Math.max(0.2, base + 0.1 * Math.sin(i / 4.2) + 0.06 * Math.sin(i / 1.7))));
 
 /** Node count adapts to the illustrative viewer count. */
-export const nodesFor = (viewers: number) => Math.round(8 + Math.sqrt(viewers) * 1.35);
+export const DOT_UNIT = 25;
+const DOT_COLS = 12;
+const DOT_ROWS = 5;
 
 type Props = {
   /** Illustrative viewer count (demo data only). */
   viewers: number;
   className?: string;
   /** Show the tick-corner chrome and header labels. */
-  labels: { live: string; viewers: string; activity: string; nodes: string; platform?: string };
+  labels: { live: string; viewers: string; activity: string; nodes: string; unit: string; platform?: string };
   minutes?: number;
   /** Fires with the simulated peak so parent cards can reuse it. */
   onPeak?: (n: number) => void;
@@ -81,15 +72,8 @@ export function LiveDashboard({ viewers, className, labels, minutes = 60, onPeak
     return { line: l, area: `${l} L${W} ${H} L0 ${H} Z` };
   }, [series]);
 
-  const nodeCount = nodesFor(viewers);
-  const nodes = useMemo(() => {
-    const rnd = mulberry(7);
-    return Array.from({ length: 64 }, (_, i) => {
-      const ang = i * 2.399963 + rnd() * 0.6;
-      const r = 16 + Math.sqrt((i + 1) / 64) * 44 + rnd() * 6;
-      return { x: +(100 + Math.cos(ang) * r * 1.5).toFixed(2), y: +(60 + Math.sin(ang) * r * 0.92).toFixed(2) };
-    });
-  }, []);
+  // Audience: every dot stands for DOT_UNIT illustrative viewers, so the grid fills with the counter.
+  const lit = Math.min(DOT_COLS * DOT_ROWS, Math.round(shown / DOT_UNIT));
 
   return (
     <div className={cn("panel tick-corners scanlines relative w-full overflow-hidden", className)}>
@@ -120,20 +104,23 @@ export function LiveDashboard({ viewers, className, labels, minutes = 60, onPeak
 
         <div className="bg-surface p-4 sm:col-span-3">
           <p className="label">{labels.nodes}</p>
-          <svg viewBox="0 0 200 120" className="mt-1 h-[7rem] w-full" role="img" aria-label={`${labels.nodes}: ${nodeCount}`}>
-            {nodes.slice(0, 64).map((n, i) => {
-              const on = i < nodeCount;
-              return (
-                <g key={i} style={{ opacity: on ? 1 : 0, transition: "opacity .6s ease", transitionDelay: `${(i % 12) * 30}ms` }}>
-                  <line x1="100" y1="60" x2={n.x} y2={n.y} stroke="#7fe34b" strokeOpacity={0.22} strokeWidth="0.5" className={i % 3 === 0 ? "flow" : undefined} />
-                  <circle cx={n.x} cy={n.y} r={i % 5 === 0 ? 2 : 1.3} fill="#b5ff7a" />
-                </g>
-              );
-            })}
-            <circle cx="100" cy="60" r="5" fill="#7fe34b" />
-            <circle cx="100" cy="60" r="5" fill="none" stroke="#7fe34b" strokeWidth="0.8" className="sv-pulse" />
-            <circle cx="100" cy="60" r="5" fill="none" stroke="#7fe34b" strokeWidth="0.8" className="sv-pulse" style={{ animationDelay: "1.1s" }} />
-          </svg>
+          <div
+            className="mt-3 grid gap-[0.4rem]"
+            style={{ gridTemplateColumns: `repeat(${DOT_COLS}, minmax(0, 1fr))` }}
+            role="img"
+            aria-label={`${labels.nodes}: ${lit} × ${DOT_UNIT} ${labels.unit}`}
+          >
+            {Array.from({ length: DOT_COLS * DOT_ROWS }).map((_, i) => (
+              <span
+                key={i}
+                className={cn("aspect-square rounded-full transition-all duration-500", i < lit ? "bg-lime shadow-[0_0_8px_rgba(181,255,122,0.45)]" : "bg-ink/10")}
+                style={{ transitionDelay: `${(i % DOT_COLS) * 18}ms` }}
+              />
+            ))}
+          </div>
+          <p className="label mt-3 !text-[0.62rem]">
+            <span className="text-lime">●</span> = {DOT_UNIT} {labels.unit}
+          </p>
         </div>
       </div>
 

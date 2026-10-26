@@ -37,7 +37,7 @@ export function LiveDemo() {
             <LiveDashboard
               viewers={viewers}
               minutes={duration}
-              labels={{ live: t.hero.panel.live, viewers: t.hero.panel.viewers, activity: t.hero.panel.activity, nodes: t.hero.panel.nodes }}
+              labels={{ live: t.hero.panel.live, viewers: t.hero.panel.viewers, activity: t.hero.panel.activity, nodes: t.hero.panel.nodes, unit: t.hero.panel.nodesUnit }}
             />
             <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-mute">
               <Info className="mt-0.5 size-3.5 shrink-0 text-green" aria-hidden />

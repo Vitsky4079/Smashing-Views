@@ -11,7 +11,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { MaskText } from "@/components/motion/MaskText";
 import { useNf } from "@/lib/i18n";
-import { LiveDashboard, nodesFor } from "./LiveDashboard";
+import { LiveDashboard, DOT_UNIT } from "./LiveDashboard";
 import { NetworkCanvas, createNetState, type NetState } from "./NetworkCanvas";
 
 const DEMO_VIEWERS = 1248;
@@ -203,7 +203,7 @@ export function Hero() {
                       viewers={viewers}
                       minutes={90}
                       onPeak={setPeak}
-                      labels={{ live: h.panel.live, viewers: h.panel.viewers, activity: h.panel.activity, nodes: h.panel.nodes }}
+                      labels={{ live: h.panel.live, viewers: h.panel.viewers, activity: h.panel.activity, nodes: h.panel.nodes, unit: h.panel.nodesUnit }}
                       className="shadow-[0_40px_120px_-30px_rgba(127,227,75,0.25)]"
                     />
                     {/* reflection */}
@@ -232,7 +232,7 @@ export function Hero() {
                     <div data-card-in className="border border-line-strong bg-bg px-4 py-3">
                       <p className="label">{h.panel.card3}</p>
                       <p className="display mt-1 text-xl text-ink">
-                        {nodesFor(viewers || 0)} <span className="text-sm text-mute">{h.panel.nodesUnit}</span>
+                        1 <span className="text-lime">●</span> = {DOT_UNIT} <span className="text-sm text-mute">{h.panel.nodesUnit}</span>
                       </p>
                     </div>
                   </div>
