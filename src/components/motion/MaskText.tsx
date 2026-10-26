@@ -30,7 +30,7 @@ export function MaskText({ lines, as: Tag = "h2", id, className, lineClassName, 
   useGsapContext(() => {
     if (prefersReducedMotion()) return;
     const inner = ref.current?.querySelectorAll<HTMLElement>(".mask-line > span");
-    if (inner?.length) gsap.set(inner, { yPercent: 115 });
+    if (inner?.length) gsap.set(inner, { yPercent: 160 });
   }, ref);
 
   // 2) reveal trigger once the intro is done

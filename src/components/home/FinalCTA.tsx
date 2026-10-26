@@ -19,13 +19,11 @@ export function FinalCTA() {
     if (prefersReducedMotion()) return;
     const draws = gsap.utils.toArray<SVGElement>("[data-cta-mark] [data-draw]");
     gsap.set(draws, { strokeDashoffset: 1, strokeOpacity: 0 });
-    gsap.to(draws, {
-      strokeDashoffset: 0,
-      strokeOpacity: 1,
-      stagger: 0.12,
-      ease: "none",
-      scrollTrigger: { trigger: root.current, start: "top 85%", end: "center 45%", scrub: 0.8 },
-    });
+    // outline draws, then fills in: the full logo sits behind the headline
+    gsap
+      .timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: root.current, start: "top 85%", end: "center 62%", scrub: 0.8 } })
+      .to(draws, { strokeDashoffset: 0, strokeOpacity: 1, stagger: 0.12, duration: 1 })
+      .to("[data-cta-mark] [data-fill]", { opacity: 0.22, duration: 0.5 }, ">-0.1");
     gsap.fromTo("[data-cta-mark]", { scale: 0.9, rotate: -3 }, { scale: 1.05, rotate: 0, ease: "none", scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: true } });
   }, root);
 
