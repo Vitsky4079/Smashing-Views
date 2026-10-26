@@ -15,9 +15,9 @@ export function Why() {
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <p className="label label-green mb-6">{w.eyebrow}</p>
-            <MaskText id="why-title" lines={w.title} className="h-lg" lineClassName={(i) => (i === 1 ? "text-green" : undefined)} />
+            <MaskText id="why-title" lines={w.title} className="text-[clamp(1.8rem,5.6vw,2.6rem)] lg:text-[clamp(2rem,3.9vw,4.4rem)]" lineClassName={(i) => (i === 1 ? "text-green" : undefined)} />
 
-            <div className="relative mt-14 hidden aspect-square w-full max-w-[380px] lg:block" aria-hidden="true">
+            <div className="relative mt-14 hidden aspect-square w-full max-w-[23.75rem] lg:block" aria-hidden="true">
               <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full">
                 <circle cx="100" cy="100" r="96" fill="none" stroke="#f5f7f4" strokeOpacity=".1" />
                 <circle cx="100" cy="100" r="76" fill="none" stroke="#7fe34b" strokeOpacity=".5" strokeDasharray="2 6" className="sv-spin" style={{ transformOrigin: "100px 100px" }} />
@@ -31,7 +31,7 @@ export function Why() {
                 ))}
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <LogoMark className="w-[44%]" strokeWidth={5} />
+                <LogoMark className="w-[44%]" />
               </div>
             </div>
           </div>

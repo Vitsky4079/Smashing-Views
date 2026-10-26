@@ -30,7 +30,7 @@ export function Services() {
           </Reveal>
         </div>
 
-        <ul className="mt-16 flex flex-col gap-px bg-line lg:h-[560px] lg:flex-row" onMouseLeave={() => undefined}>
+        <ul className="mt-16 flex flex-col gap-px bg-line lg:h-[35rem] lg:flex-row" onMouseLeave={() => undefined}>
           {s.items.map((item, i) => {
             const Visual = serviceVisuals[item.id as keyof typeof serviceVisuals];
             const isActive = active === i;
@@ -53,14 +53,14 @@ export function Services() {
 
                 <div
                   className={cn(
-                    "pointer-events-none my-6 h-44 w-full transition-all duration-700 lg:absolute lg:inset-x-8 lg:top-[88px] lg:my-0 lg:h-[250px]",
+                    "pointer-events-none my-6 h-44 w-full transition-all duration-700 lg:absolute lg:inset-x-8 lg:top-[5.5rem] lg:my-0 lg:h-[15.625rem]",
                     isActive ? "opacity-100 lg:scale-100" : "opacity-60 lg:scale-90 lg:opacity-35",
                   )}
                 >
                   <Visual />
                 </div>
 
-                <div className="relative lg:mt-auto lg:pt-[270px]">
+                <div className="relative lg:mt-auto lg:pt-[16.875rem]">
                   <h3 className="display text-[clamp(1.6rem,6vw,2.2rem)] lg:text-[clamp(1.2rem,1.75vw,2.1rem)]">{item.name}</h3>
                   <p className="mt-3 max-w-md text-sm leading-relaxed text-mute">{item.short}</p>
                   <div

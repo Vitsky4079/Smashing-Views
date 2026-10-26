@@ -37,7 +37,7 @@ export default async function ContactPage({ params }: { params: Params }) {
       <section id="formularz" className="relative scroll-mt-24 pb-28 pt-6 md:pb-40" aria-label={t.contact.form.title}>
         <div className="wrap grid items-start gap-10 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <Suspense fallback={<div className="panel h-[640px]" aria-hidden="true" />}>
+            <Suspense fallback={<div className="panel h-[40rem]" aria-hidden="true" />}>
               <ContactForm />
             </Suspense>
           </div>

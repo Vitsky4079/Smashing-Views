@@ -25,6 +25,13 @@
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
+/* Desktop UI scale: 16px at 1280px wide, 24px (150%) at 1920px, so layouts keep their 1280px proportions. */
+@media (min-width: 1280px) {
+  html {
+    font-size: clamp(16px, 1.25vw, 30px);
+  }
+}
+
 html {
   background: var(--sv-bg);
   color-scheme: dark;
@@ -92,7 +99,7 @@ html.lenis body {
 /* Layout helpers */
 .wrap {
   width: 100%;
-  max-width: 1440px;
+  max-width: 90rem;
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
 }
@@ -109,8 +116,8 @@ html.lenis body {
 .tick-corners::after {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   border: 1px solid var(--sv-green);
   pointer-events: none;
   transition: opacity 0.3s;
@@ -133,7 +140,7 @@ html.lenis body {
   background-image:
     linear-gradient(to right, rgba(245, 247, 244, 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(245, 247, 244, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
+  background-size: 4.5rem 4.5rem;
   mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%);
 }
@@ -231,6 +238,8 @@ html.lenis body {
   50% { opacity: 0.45; transform: scale(0.8); }
 }
 .live-dot {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: pulse-dot 1.4s ease-in-out infinite;
 }
 

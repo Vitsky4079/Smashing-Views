@@ -52,11 +52,11 @@ export function Process() {
 
         <div className="relative mt-20">
           {/* horizontal track (md+) */}
-          <div data-track className="absolute left-0 right-0 top-[34px] hidden h-px bg-line-strong md:block" aria-hidden="true">
+          <div data-track className="absolute left-0 right-0 top-[2.125rem] hidden h-px bg-line-strong md:block" aria-hidden="true">
             <div data-fill data-fill-h className="h-full origin-left bg-green shadow-[0_0_14px_2px_rgba(127,227,75,.6)]" />
           </div>
           {/* vertical track (mobile) */}
-          <div className="absolute bottom-4 left-[34px] top-4 w-px bg-line-strong md:hidden" aria-hidden="true">
+          <div className="absolute bottom-4 left-[2.125rem] top-4 w-px bg-line-strong md:hidden" aria-hidden="true">
             <div data-fill data-fill-v className="h-full origin-top bg-green shadow-[0_0_14px_2px_rgba(127,227,75,.6)]" />
           </div>
 
@@ -65,8 +65,7 @@ export function Process() {
               const Icon = icons[i];
               return (
                 <li key={s.n} data-step className="relative pl-24 md:pl-0">
-                  <div className="absolute left-0 top-0 flex size-[68px] items-center justify-center border border-green/60 bg-bg md:static md:mb-10">
-                    <span className="tick-corners absolute inset-0" aria-hidden="true" />
+                  <div className="absolute left-0 top-0 flex size-[4.25rem] items-center justify-center border border-green/60 bg-bg md:static md:mb-10">
                     <Icon className="size-7 text-green" strokeWidth={1.4} aria-hidden />
                   </div>
                   <p className="display text-[clamp(3.5rem,6vw,6rem)] text-transparent" style={{ WebkitTextStroke: "1px rgba(245,247,244,.35)" }}>

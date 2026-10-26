@@ -31,14 +31,14 @@ export function Navbar() {
       <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
         <div
           className={cn(
-            "mx-auto flex max-w-[1440px] items-center justify-between transition-all duration-500 ease-out",
+            "mx-auto flex max-w-[90rem] items-center justify-between transition-all duration-500 ease-out",
             scrolled
               ? "border border-line bg-bg/80 px-4 py-2.5 backdrop-blur-md sm:px-6"
               : "border border-transparent px-1 py-3 sm:px-3",
           )}
         >
           <TLink href="/" className="flex items-center gap-3" aria-label="Smashing Views">
-            <LogoMark className="w-9" strokeWidth={9} />
+            <LogoMark className="w-9" />
             <Wordmark />
           </TLink>
 

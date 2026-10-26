@@ -138,7 +138,7 @@ export function Hero() {
   }, [ready]);
 
   return (
-    <section ref={root} id="hero" className="relative isolate overflow-hidden lg:h-[100svh] lg:min-h-[680px]" aria-labelledby="hero-title">
+    <section ref={root} id="hero" className="relative isolate overflow-hidden lg:h-[100svh] lg:min-h-[42.5rem]" aria-labelledby="hero-title">
       <NetworkCanvas stateRef={net} className="absolute inset-0 -z-10 h-full w-full" />
       <div className="grid-bg pointer-events-none absolute inset-0 -z-20 opacity-80" aria-hidden="true" />
       <div
@@ -150,7 +150,7 @@ export function Hero() {
       {/* big logo line-drawing */}
       <div data-bigmark-wrap className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center [perspective:1200px]" aria-hidden="true">
         <div data-bigmark className="w-[min(86vw,820px)] [transform-style:preserve-3d]">
-          <LogoMark strokeWidth={3.2} className="w-full" />
+          <LogoMark outline strokeWidth={1.4} className="w-full" />
         </div>
       </div>
 
@@ -190,7 +190,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative z-10 mt-16 h-[420px] sm:mt-10 sm:h-[520px] lg:col-span-5 lg:mt-0 lg:h-[620px]" aria-hidden="true">
+        <div className="relative z-10 mt-16 h-[26.25rem] sm:mt-10 sm:h-[32.5rem] lg:col-span-5 lg:mt-0 lg:h-[38.75rem]" aria-hidden="true">
           <div className="absolute inset-0 flex items-center [perspective:1500px]">
             <div data-scene-scroll className="preserve-3d w-full will-change-transform">
               <div data-scene-mouse className="preserve-3d w-full">
@@ -209,8 +209,8 @@ export function Hero() {
                     </div>
                   </div>
 
-                  <div data-card data-depth="1.6" className="absolute -top-3 right-[4%] z-10 hidden sm:right-[6%] sm:block" style={{ transform: "translateZ(90px)" }}>
-                    <div data-card-in className="panel flex items-center gap-3 px-4 py-3 backdrop-blur-sm">
+                  <div data-card data-depth="1.6" className="absolute -top-6 right-[4%] z-20 hidden sm:right-[6%] sm:block">
+                    <div data-card-in className="flex items-center gap-3 border border-line-strong bg-bg px-4 py-3">
                       <div>
                         <p className="label">{h.panel.card1}</p>
                         <p className="display mt-1 text-xl tabular-nums text-lime">
@@ -219,14 +219,14 @@ export function Hero() {
                       </div>
                     </div>
                   </div>
-                  <div data-card data-depth="1" className="absolute -right-1 top-[44%] z-10 hidden sm:block lg:-right-8" style={{ transform: "translateZ(60px)" }}>
-                    <div data-card-in className="panel px-4 py-3">
+                  <div data-card data-depth="1" className="absolute -bottom-8 right-[2%] z-20 hidden sm:block">
+                    <div data-card-in className="border border-line-strong bg-bg px-4 py-3">
                       <p className="label">{h.panel.card2}</p>
                       <p className="display mt-1 text-xl text-ink">90 min</p>
                     </div>
                   </div>
-                  <div data-card data-depth="2" className="absolute -bottom-3 left-[8%] z-10 hidden sm:block lg:-bottom-2" style={{ transform: "translateZ(120px)" }}>
-                    <div data-card-in className="panel px-4 py-3">
+                  <div data-card data-depth="2" className="absolute -bottom-8 left-[4%] z-20 hidden sm:block">
+                    <div data-card-in className="border border-line-strong bg-bg px-4 py-3">
                       <p className="label">{h.panel.card3}</p>
                       <p className="display mt-1 text-xl text-ink">
                         {nodesFor(viewers || 0)} <span className="text-sm text-mute">{h.panel.nodesUnit}</span>

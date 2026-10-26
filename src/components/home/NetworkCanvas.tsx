@@ -21,7 +21,6 @@ export const createNetState = (): NetState => ({ reveal: 0, organize: 0, mx: 0, 
 type Node = { x: number; y: number; z: number; ph: number; gx: number; gy: number };
 type Packet = { from: number; t: number; speed: number };
 
-const GRID = 72;
 const GREEN = "127,227,75";
 const LIME = "181,255,122";
 
@@ -38,6 +37,8 @@ export function NetworkCanvas({ stateRef, className }: { stateRef: MutableRefObj
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
+    // lattice follows the site grid (4.5rem), so it scales with the desktop UI zoom
+    const GRID = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     const lite = isLiteDevice();
     const still = prefersReducedMotion();
     const count = lite ? 34 : 84;

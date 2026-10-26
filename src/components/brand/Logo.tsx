@@ -1,46 +1,56 @@
 import { cn } from "@/lib/cn";
+import logo from "./logo-paths.json";
+
+const COLORS = { gray: "#9ea5a0", green: "#7fe34b" } as const;
+const [vx, vy, vw, vh] = logo.viewBox;
 
 /**
- * Smashing Views geometric mark, redrawn as stroke paths from the supplied logo
- * (gray "N" frame, green triangles, two node circles) so it can be line-drawn.
- * Every shape carries `data-draw` + pathLength=1 for GSAP stroke reveals.
+ * Smashing Views mark, vectorised from the supplied logo file (SMASHING.png) so it matches
+ * the original exactly: gray "N" frame, green wedges with the two node rings.
+ *
+ * - default: filled mark (navbar, footer, …)
+ * - `outline`: stroke-only paths marked `data-draw` (pathLength=1) for GSAP line-drawing, plus a
+ *   hidden `data-fill` layer that animations can fade in once the strokes are drawn.
  */
 export function LogoMark({
   className,
-  strokeWidth = 8,
+  strokeWidth = 1.6,
+  outline = false,
   title,
 }: {
   className?: string;
   strokeWidth?: number;
+  outline?: boolean;
   title?: string;
 }) {
-  const common = {
-    fill: "none",
-    strokeWidth,
-    strokeLinejoin: "miter" as const,
-    strokeLinecap: "butt" as const,
-    pathLength: 1,
-    "data-draw": "",
-    style: { strokeDasharray: 1, strokeDashoffset: 0 },
-  };
   return (
     <svg
-      viewBox="-6 -6 322 192"
+      viewBox={`${vx} ${vy} ${vw} ${vh}`}
       className={cn("overflow-visible", className)}
       role={title ? "img" : undefined}
       aria-label={title}
       aria-hidden={title ? undefined : true}
     >
-      {/* gray N frame */}
-      <path d="M75 9 H103 L235 141 V165 H207 L75 33 Z" stroke="#9ea5a0" {...common} />
-      <path d="M75 33 V84" stroke="#9ea5a0" {...common} />
-      <path d="M235 24 V84" stroke="#9ea5a0" {...common} />
-      {/* green wedges */}
-      <path d="M34 43 L156 165 H75 V100" stroke="#7fe34b" {...common} />
-      <path d="M272 132 L149 9 H235 V24" stroke="#7fe34b" {...common} />
-      {/* nodes */}
-      <circle cx="26" cy="35" r="12" stroke="#7fe34b" {...common} data-node="" />
-      <circle cx="283" cy="143" r="14" stroke="#7fe34b" {...common} data-node="" />
+      {logo.shapes.map((s, i) => {
+        const color = COLORS[s.color as keyof typeof COLORS];
+        return outline ? (
+          <g key={i}>
+            <path data-fill d={s.d} fill={color} fillRule="evenodd" style={{ opacity: 0 }} />
+            <path
+              data-draw
+              d={s.d}
+              fill="none"
+              stroke={color}
+              strokeWidth={strokeWidth}
+              strokeLinejoin="miter"
+              pathLength={1}
+              style={{ strokeDasharray: 1, strokeDashoffset: 0 }}
+            />
+          </g>
+        ) : (
+          <path key={i} d={s.d} fill={color} fillRule="evenodd" />
+        );
+      })}
     </svg>
   );
 }

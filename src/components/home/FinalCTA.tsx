@@ -31,11 +31,11 @@ export function FinalCTA() {
   return (
     <section ref={root} className="relative isolate overflow-hidden border-t border-line py-40 md:py-56" aria-labelledby="cta-title">
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center" aria-hidden="true">
-        <div data-cta-mark className="w-[min(120vw,1500px)] opacity-80">
-          <LogoMark strokeWidth={1.6} className="w-full [filter:drop-shadow(0_0_8px_rgba(127,227,75,.45))]" />
+        <div data-cta-mark className="w-[min(120vw,1500px)] opacity-60">
+          <LogoMark outline strokeWidth={0.9} className="w-full [filter:drop-shadow(0_0_8px_rgba(127,227,75,.45))]" />
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(8,10,8,.75),rgba(8,10,8,.2)_60%,transparent)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(8,10,8,.9),rgba(8,10,8,.55)_55%,transparent)]" aria-hidden="true" />
 
       <div className="wrap text-center">
         <MaskText id="cta-title" lines={c.title} className="h-xl" lineClassName={(i) => (i === 1 ? "text-green" : undefined)} />

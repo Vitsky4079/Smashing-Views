@@ -26,7 +26,7 @@ export function ContactGraphic() {
         ))}
       </svg>
       <div className="sv-draw-loop absolute right-[4%] top-[18%] w-[min(60%,420px)] opacity-60">
-        <LogoMark strokeWidth={2.4} className="w-full" />
+        <LogoMark outline strokeWidth={1.2} className="w-full" />
       </div>
     </div>
   );

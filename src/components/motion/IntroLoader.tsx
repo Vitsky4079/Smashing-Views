@@ -50,7 +50,8 @@ export function IntroProvider({ children }: { children: ReactNode }) {
       });
       tlRef.current = tl;
       gsap.set(draws, { strokeDashoffset: 1 });
-      tl.to(draws, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: 0.08 })
+      tl.to(draws, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: 0.12 })
+        .to(el.querySelectorAll("[data-fill]"), { opacity: 1, duration: 0.4, ease: "power1.out" }, "-=0.2")
         .fromTo("[data-intro-text]", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "expo.out", stagger: 0.08 }, "-=0.5")
         .fromTo("[data-intro-bar]", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power3.inOut" }, "<")
         .to({}, { duration: 0.25 })
@@ -68,7 +69,7 @@ export function IntroProvider({ children }: { children: ReactNode }) {
         aria-hidden="true"
       >
         <div data-intro-content className="flex flex-col items-center gap-8">
-          <LogoMark className="w-[min(62vw,340px)]" strokeWidth={7} />
+          <LogoMark outline className="w-[min(62vw,22rem)]" strokeWidth={1.8} />
           <div className="flex flex-col items-center gap-3">
             <div className="mask-line">
               <span data-intro-text className="display text-2xl tracking-[0.02em] text-ink sm:text-3xl">

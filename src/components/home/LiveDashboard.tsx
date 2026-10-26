@@ -110,7 +110,7 @@ export function LiveDashboard({ viewers, className, labels, minutes = 60, onPeak
           <p className="display mt-2 text-[clamp(2.4rem,5vw,3.6rem)] leading-none tabular-nums text-ink">
             <AnimatedNumber value={shown} format={(n) => nf.format(Math.round(n))} />
           </p>
-          <div className="mt-4 flex items-end gap-[3px]" aria-hidden="true">
+          <div className="mt-4 flex items-end gap-[0.1875rem]" aria-hidden="true">
             {Array.from({ length: 24 }).map((_, i) => {
               const v = series[(i * 2) % POINTS];
               return <span key={i} className="w-full bg-green/70 transition-[height] duration-700" style={{ height: `${6 + v * 26}px`, opacity: 0.35 + v * 0.65 }} />;
@@ -120,7 +120,7 @@ export function LiveDashboard({ viewers, className, labels, minutes = 60, onPeak
 
         <div className="bg-surface p-4 sm:col-span-3">
           <p className="label">{labels.nodes}</p>
-          <svg viewBox="0 0 200 120" className="mt-1 h-[112px] w-full" role="img" aria-label={`${labels.nodes}: ${nodeCount}`}>
+          <svg viewBox="0 0 200 120" className="mt-1 h-[7rem] w-full" role="img" aria-label={`${labels.nodes}: ${nodeCount}`}>
             {nodes.slice(0, 64).map((n, i) => {
               const on = i < nodeCount;
               return (

@@ -58,6 +58,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       gsap.set(el, { display: "block" });
       gsap.set(bars, { scaleY: 0, transformOrigin: "50% 100%" });
       gsap.set(mark, { strokeDashoffset: 1 });
+      gsap.set(el.querySelectorAll("[data-fill]"), { opacity: 0 });
       gsap.set("[data-pt-line]", { scaleX: 0 });
 
       const reveal = () => {
@@ -97,7 +98,8 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
         })
         .to(bars, { scaleY: 1, duration: 0.5, ease: "expo.inOut", stagger: { each: 0.04, from: "start" } })
         .set("[data-pt-logo]", { opacity: 1 }, "-=0.2")
-        .to(mark, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut", stagger: 0.04 }, "<")
+        .to(mark, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut", stagger: 0.06 }, "<")
+        .to(el.querySelectorAll("[data-fill]"), { opacity: 1, duration: 0.3 }, ">-0.15")
         .to("[data-pt-line]", { scaleX: 1, duration: 0.4, ease: "power3.inOut" }, "<");
     },
     [router],
@@ -115,7 +117,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
           ))}
         </div>
         <div data-pt-logo className="absolute inset-0 flex flex-col items-center justify-center gap-6 opacity-0">
-          <LogoMark className="w-40 sm:w-52" strokeWidth={7} />
+          <LogoMark outline className="w-40 sm:w-52" strokeWidth={1.8} />
           <div data-pt-line className="h-px w-32 origin-left bg-green" />
         </div>
       </div>

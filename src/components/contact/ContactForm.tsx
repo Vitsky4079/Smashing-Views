@@ -211,7 +211,7 @@ export function ContactForm() {
       </div>
 
       {/* honeypot — hidden from humans and assistive tech */}
-      <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+      <div className="absolute -left-[624.938rem] h-0 w-0 overflow-hidden" aria-hidden="true">
         <label>
           Website
           <input name="website" tabIndex={-1} autoComplete="off" />

@@ -55,7 +55,7 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
           <div className="grid-bg pointer-events-none absolute inset-0 opacity-70" />
           <div className="relative flex items-center justify-between px-5 pt-6">
             <div className="flex items-center gap-3">
-              <LogoMark className="w-9" strokeWidth={9} />
+              <LogoMark className="w-9" />
               <Wordmark />
             </div>
             <button ref={closeRef} type="button" onClick={onClose} aria-label={t.nav.closeMenu} className="flex size-11 items-center justify-center border border-line-strong">

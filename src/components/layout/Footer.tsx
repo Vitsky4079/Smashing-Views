@@ -36,7 +36,7 @@ export function Footer() {
       <div className="wrap relative z-10 grid gap-12 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <LogoMark className="w-12" strokeWidth={9} />
+            <LogoMark className="w-12" />
             <Wordmark className="!text-lg" />
           </div>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-mute">{t.footer.tagline}</p>
@@ -104,14 +104,14 @@ export function Footer() {
         data-giant
         aria-hidden="true"
         className="display pointer-events-none select-none whitespace-nowrap text-center leading-[0.8] text-transparent"
-        style={{ fontSize: "clamp(3rem, 15.2vw, 15rem)", WebkitTextStroke: "1px rgba(127,227,75,0.55)" }}
+        style={{ fontSize: "clamp(3rem, 15.2vw, 15rem)", WebkitTextStroke: "1.5px rgba(127,227,75,0.85)" }}
       >
         SMASHING VIEWS
       </div>
 
-      <div className="wrap relative z-10 flex flex-col gap-3 border-t border-line py-6 text-xs text-mute md:flex-row md:items-center md:justify-between">
-        <p className="max-w-3xl leading-relaxed">{t.footer.disclaimer}</p>
-        <p className="shrink-0">
+      <div className="wrap relative z-10 flex flex-col gap-4 border-t border-line py-7 text-sm text-mute md:flex-row md:items-center md:justify-between">
+        <p className="max-w-3xl leading-relaxed text-mute">{t.footer.disclaimer}</p>
+        <p className="shrink-0 text-ink/70">
           © {new Date().getFullYear()} {siteConfig.contact.companyLegalName ?? siteConfig.name}. {t.footer.rights}
         </p>
       </div>
