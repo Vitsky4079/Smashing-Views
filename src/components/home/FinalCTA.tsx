@@ -18,9 +18,10 @@ export function FinalCTA() {
   useGsapContext(() => {
     if (prefersReducedMotion()) return;
     const draws = gsap.utils.toArray<SVGElement>("[data-cta-mark] [data-draw]");
-    gsap.set(draws, { strokeDashoffset: 1 });
+    gsap.set(draws, { strokeDashoffset: 1, strokeOpacity: 0 });
     gsap.to(draws, {
       strokeDashoffset: 0,
+      strokeOpacity: 1,
       stagger: 0.12,
       ease: "none",
       scrollTrigger: { trigger: root.current, start: "top 85%", end: "center 45%", scrub: 0.8 },

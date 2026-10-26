@@ -53,7 +53,7 @@ export function Services() {
 
                 <div
                   className={cn(
-                    "pointer-events-none my-6 h-44 w-full transition-all duration-700 lg:absolute lg:inset-x-8 lg:top-[5.5rem] lg:my-0 lg:h-[15.625rem]",
+                    "pointer-events-none my-6 h-44 w-full transition-all duration-700 lg:absolute lg:w-auto lg:inset-x-8 lg:top-[5.5rem] lg:my-0 lg:h-[15.625rem]",
                     isActive ? "opacity-100 lg:scale-100" : "opacity-60 lg:scale-90 lg:opacity-35",
                   )}
                 >

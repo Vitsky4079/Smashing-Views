@@ -49,8 +49,8 @@ export function IntroProvider({ children }: { children: ReactNode }) {
         },
       });
       tlRef.current = tl;
-      gsap.set(draws, { strokeDashoffset: 1 });
-      tl.to(draws, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: 0.12 })
+      gsap.set(draws, { strokeDashoffset: 1, strokeOpacity: 0 });
+      tl.to(draws, { strokeDashoffset: 0, strokeOpacity: 1, duration: 1.1, ease: "power2.inOut", stagger: 0.12 })
         .to(el.querySelectorAll("[data-fill]"), { opacity: 1, duration: 0.4, ease: "power1.out" }, "-=0.2")
         .fromTo("[data-intro-text]", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "expo.out", stagger: 0.08 }, "-=0.5")
         .fromTo("[data-intro-bar]", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power3.inOut" }, "<")

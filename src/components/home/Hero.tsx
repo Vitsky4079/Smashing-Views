@@ -48,12 +48,12 @@ export function Hero() {
 
     // ----- initial hidden state (visible by default for no-JS / reduced motion) -----
     const draws = q("[data-bigmark] [data-draw]");
-    gsap.set(draws, { strokeDashoffset: 1 });
+    gsap.set(draws, { strokeDashoffset: 1, strokeOpacity: 0 });
     gsap.set("[data-scene-in]", { opacity: 0, z: -420, rotateX: 24, rotateY: 22, clipPath: "inset(-20% -20% 100% -20%)" });
     gsap.set(q("[data-card]"), { opacity: 0, y: 30 });
     gsap.set(q("[data-trail]"), { xPercent: -120, opacity: 0 });
     gsap.set(q("[data-fade]"), { opacity: 0, y: 24 });
-    gsap.set("[data-bigmark]", { rotateY: -80, scale: 1.1, opacity: 1 });
+    gsap.set("[data-bigmark]", { rotateY: -80, scale: 1.1, opacity: 0 });
 
     const state = net.current;
     const intro = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
@@ -61,7 +61,8 @@ export function Hero() {
 
     intro
       // 1–2 logo draws, then unfolds
-      .to(draws, { strokeDashoffset: 0, duration: 1.3, ease: "power2.inOut", stagger: 0.07 }, 0)
+      .set("[data-bigmark]", { opacity: 1 }, 0)
+      .to(draws, { strokeDashoffset: 0, strokeOpacity: 1, duration: 1.3, ease: "power2.inOut", stagger: 0.07 }, 0)
       .to("[data-bigmark]", { rotateY: 0, duration: 1.7, ease: "expo.out" }, 0.2)
       // 3 light trails
       .to(q("[data-trail]"), { opacity: 1, xPercent: 340, duration: 1.5, ease: "power2.inOut", stagger: 0.18 }, 0.9)
