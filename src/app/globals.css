@@ -25,10 +25,10 @@
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
-/* Desktop UI scale: 16px at 1280px wide, 24px (150%) at 1920px, so layouts keep their 1280px proportions. */
+/* Desktop UI scale: 100% up to 1536px wide, then grows to 125% (20px) at 1920px. */
 @media (min-width: 1280px) {
   html {
-    font-size: clamp(16px, 1.25vw, 30px);
+    font-size: clamp(16px, 1.0417vw, 26px);
   }
 }
 

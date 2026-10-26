@@ -209,7 +209,7 @@ export function Hero() {
                     </div>
                   </div>
 
-                  <div data-card data-depth="1.6" className="absolute -top-6 right-[4%] z-20 hidden sm:right-[6%] sm:block">
+                  <div data-card data-depth="1.6" className="absolute -top-20 right-[4%] z-20 hidden sm:right-[6%] sm:block" style={{ transform: "translateZ(80px)" }}>
                     <div data-card-in className="flex items-center gap-3 border border-line-strong bg-bg px-4 py-3">
                       <div>
                         <p className="label">{h.panel.card1}</p>
@@ -219,13 +219,13 @@ export function Hero() {
                       </div>
                     </div>
                   </div>
-                  <div data-card data-depth="1" className="absolute -bottom-8 right-[2%] z-20 hidden sm:block">
+                  <div data-card data-depth="1" className="absolute -bottom-10 right-[2%] z-20 hidden sm:block" style={{ transform: "translateZ(80px)" }}>
                     <div data-card-in className="border border-line-strong bg-bg px-4 py-3">
                       <p className="label">{h.panel.card2}</p>
                       <p className="display mt-1 text-xl text-ink">90 min</p>
                     </div>
                   </div>
-                  <div data-card data-depth="2" className="absolute -bottom-8 left-[4%] z-20 hidden sm:block">
+                  <div data-card data-depth="2" className="absolute -bottom-10 left-[4%] z-20 hidden sm:block" style={{ transform: "translateZ(80px)" }}>
                     <div data-card-in className="border border-line-strong bg-bg px-4 py-3">
                       <p className="label">{h.panel.card3}</p>
                       <p className="display mt-1 text-xl text-ink">
